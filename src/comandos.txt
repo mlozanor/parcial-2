@@ -10,3 +10,4 @@ npm install @faker-js/faker@latest
 npm install sqlite3 --save
 npm run test:watch        para probar
 
+asdasdasd
