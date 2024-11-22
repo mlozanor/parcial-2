@@ -1,0 +1,12 @@
+$ git clone https://github.com/nestjs/typescript-starter.git project
+$ cd project
+$ npm install
+$ npm run start
+
+npm run test:watch
+npm install @nestjs/typeorm typeorm
+npm faker npm install @faker-js/faker
+npm install @faker-js/faker@latest
+npm install sqlite3 --save
+npm run test:watch        para probar
+
