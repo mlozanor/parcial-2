@@ -33,7 +33,7 @@ describe('PacienteMedicoService', () => {
     pacienteRepository.clear();
 
     medicosList = [];
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 4; i++) { // Crear inicialmente solo 4 médicos
       const medico: MedicoEntity = await medicoRepository.save({
         nombre: faker.person.firstName(),
         especialidad: faker.person.jobTitle(),
@@ -58,19 +58,29 @@ describe('PacienteMedicoService', () => {
 
     const updatedPaciente: PacienteEntity = await service.addMedicoToPaciente(paciente.id, newMedico.id);
 
-    expect(updatedPaciente.medico.length).toBe(6); // Ahora debe haber 6 médicos
+    expect(updatedPaciente.medico.length).toBe(5); // Ahora debe haber 5 médicos
     expect(updatedPaciente.medico.find(m => m.id === newMedico.id)).toBeDefined();
   });
 
   it('addMedicoToPaciente should throw an exception if paciente already has 5 medicos', async () => {
+    // Agregar un quinto médico para llegar al límite
+    const additionalMedico: MedicoEntity = await medicoRepository.save({
+      nombre: faker.person.firstName(),
+      especialidad: faker.person.jobTitle(),
+      telefono: faker.phone.number(),
+    });
+    await service.addMedicoToPaciente(paciente.id, additionalMedico.id);
+
     const newMedico: MedicoEntity = await medicoRepository.save({
       nombre: faker.person.firstName(),
       especialidad: faker.person.jobTitle(),
       telefono: faker.phone.number(),
     });
 
-    // Paciente ya tiene 5 médicos en la base de datos inicial
-    await expect(() => service.addMedicoToPaciente(paciente.id, newMedico.id)).rejects.toHaveProperty("message", "A paciente cannot have more than 5 medicos assigned");
+    await expect(() => service.addMedicoToPaciente(paciente.id, newMedico.id)).rejects.toHaveProperty(
+      "message",
+      "A paciente cannot have more than 5 medicos assigned",
+    );
   });
 
   it('findMedicoByPacienteIdAndMedicoId should throw an exception for an invalid medico', async () => {
