@@ -82,4 +82,23 @@ export class PacienteMedicoService {
     paciente.medico = paciente.medico.filter((m) => m.id !== medicoId);
     await this.pacienteRepository.save(paciente);
   }
+
+  async associateMedicosToPaciente(pacienteId: string, medicos: MedicoEntity[]): Promise<PacienteEntity> {
+    const paciente: PacienteEntity = await this.pacienteRepository.findOne({ where: { id: pacienteId }, relations: ['medico'] });
+    if (!paciente) {
+      throw new BusinessLogicException("The paciente with the given id was not found", BusinessError.NOT_FOUND);
+    }
+
+    // Validar que todos los médicos existan
+    for (const medico of medicos) {
+      const medicoExists: MedicoEntity = await this.medicoRepository.findOne({ where: { id: medico.id } });
+      if (!medicoExists) {
+        throw new BusinessLogicException(`The medico with the id ${medico.id} was not found`, BusinessError.NOT_FOUND);
+      }
+    }
+
+    // Asignar los nuevos médicos al paciente
+    paciente.medico = medicos;
+    return await this.pacienteRepository.save(paciente);
+  }
 }
