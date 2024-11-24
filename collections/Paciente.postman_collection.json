@@ -1,0 +1,367 @@
+{
+	"info": {
+		"_postman_id": "4b48ce05-1775-4790-880d-edf0a9fbbc4a",
+		"name": "Paciente",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25992666",
+		"_collection_link": "https://red-space-913566.postman.co/workspace/b965c5c2-4325-4002-b255-dd23606def59/collection/25992666-4b48ce05-1775-4790-880d-edf0a9fbbc4a?action=share&source=collection_link&creator=25992666"
+	},
+	"item": [
+		{
+			"name": "Add paciente",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nombre\": \"Juan Pérez\",\r\n  \"genero\": \"Masculino\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/pacientes",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"pacientes"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Add paciente",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nombre\": \"Juan Pérez\",\r\n  \"genero\": \"Masculino\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/pacientes",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"pacientes"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n  \"id\": \"1\",\r\n  \"nombre\": \"Juan Pérez\",\r\n  \"genero\": \"Masculino\"\r\n}\r\n"
+				}
+			]
+		},
+		{
+			"name": "Get all pacientes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/pacientes",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"pacientes"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get all pacientes",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/pacientes",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"pacientes"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "[\r\n  {\r\n    \"id\": \"1\",\r\n    \"nombre\": \"Juan Pérez\",\r\n    \"genero\": \"Masculino\",\r\n    \"medicos\": [\r\n      {\r\n        \"id\": \"101\",\r\n        \"nombre\": \"Dr. Ana Gómez\",\r\n        \"especialidad\": \"Cardiología\"\r\n      }\r\n    ],\r\n    \"diagnosticos\": [\r\n      {\r\n        \"id\": \"201\",\r\n        \"descripcion\": \"Fiebre alta\",\r\n        \"tratamiento\": \"Paracetamol y descanso\"\r\n      }\r\n    ]\r\n  },\r\n  {\r\n    \"id\": \"2\",\r\n    \"nombre\": \"María López\",\r\n    \"genero\": \"Femenino\",\r\n    \"medicos\": [],\r\n    \"diagnosticos\": []\r\n  }\r\n]\r\n"
+				}
+			]
+		},
+		{
+			"name": "Get one paciente",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/pacientes/{{paciente_id}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"pacientes",
+						"{{paciente_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get one paciente",
+					"originalRequest": {
+						"method": "GET",
+						"header": []
+					},
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n  \"id\": \"1\",\r\n  \"nombre\": \"Juan Pérez\",\r\n  \"genero\": \"Masculino\",\r\n  \"medicos\": [\r\n    {\r\n      \"id\": \"101\",\r\n      \"nombre\": \"Dr. Ana Gómez\",\r\n      \"especialidad\": \"Cardiología\"\r\n    }\r\n  ],\r\n  \"diagnosticos\": [\r\n    {\r\n      \"id\": \"201\",\r\n      \"descripcion\": \"Fiebre alta\",\r\n      \"tratamiento\": \"Paracetamol y descanso\"\r\n    }\r\n  ]\r\n}\r\n"
+				}
+			]
+		},
+		{
+			"name": "Obtener paciente que no existe",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/pacientes/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"pacientes",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Obtener paciente que no existe",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/pacientes/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"pacientes",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"code": 404,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n   \"statusCode\": 404,\r\n   \"message\": \"The paciente with the given id was not found\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Actualizar un paciente",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nombre\": \"Juan Pérez Actualizado\",\r\n  \"genero\": \"Masculino\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/pacientes/{{paciente_id}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"pacientes",
+						"{{paciente_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Actualizar un paciente",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nombre\": \"Juan Pérez Actualizado\",\r\n  \"genero\": \"Masculino\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/pacientes/{{paciente_id}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"pacientes",
+								"{{paciente_id}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n  \"id\": \"1\",\r\n  \"nombre\": \"Juan Pérez Actualizado\",\r\n  \"genero\": \"Masculino\"\r\n}\r\n"
+				}
+			]
+		},
+		{
+			"name": "Actualizar paciente que no existe",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/pacientes/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"pacientes",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Actualizar paciente que no existe",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/pacientes/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"pacientes",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n   \"statusCode\": 404,\r\n   \"message\": \"The paciente with the given id was not found\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Borrar paciente",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/pacientes/{{paciente_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"pacientes",
+						"{{paciente_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Borrar paciente",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/pacientes/{{paciente_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"pacientes",
+								"{{paciente_id}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Borrar paciente que no exixste",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/pacientes/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"pacientes",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Borrar paciente que no exixste",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/pacientes/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"pacientes",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n   \"statusCode\": 404,\r\n   \"message\": \"The paciente with the given id was not found\"\r\n}"
+				}
+			]
+		}
+	]
+}

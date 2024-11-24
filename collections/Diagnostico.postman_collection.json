@@ -1,0 +1,395 @@
+{
+	"info": {
+		"_postman_id": "c507f884-f757-4768-9c2e-44341b897cb3",
+		"name": "Diagnostico",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25992666",
+		"_collection_link": "https://red-space-913566.postman.co/workspace/b965c5c2-4325-4002-b255-dd23606def59/collection/25992666-c507f884-f757-4768-9c2e-44341b897cb3?action=share&source=collection_link&creator=25992666"
+	},
+	"item": [
+		{
+			"name": "Add diagnostico",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"descripcion\": \"Fiebre alta y dolor de cabeza persistente\",\r\n  \"tratamiento\": \"Paracetamol y descanso\",\r\n  \"pacienteId\": \"123\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/diagnosticos",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"diagnosticos"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Add Diagnostico",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/diagnosticos",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"diagnosticos"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n  \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\r\n  \"descripcion\": \"Fiebre alta y dolor de cabeza persistente\",\r\n  \"tratamiento\": \"Paracetamol y descanso\",\r\n  \"pacienteId\": \"123\"\r\n}\r\n"
+				}
+			]
+		},
+		{
+			"name": "Get all diagnosticos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/diagnosticos",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"diagnosticos"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get all diagnosticos",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/diagnosticos",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"diagnosticos"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "[\r\n  {\r\n    \"id\": \"1\",\r\n    \"descripcion\": \"Fiebre alta y dolor de cabeza persistente\",\r\n    \"tratamiento\": \"Paracetamol y descanso\",\r\n    \"paciente\": {\r\n      \"id\": \"123\",\r\n      \"nombre\": \"Juan Pérez\",\r\n      \"genero\": \"Masculino\"\r\n    }\r\n  },\r\n  {\r\n    \"id\": \"2\",\r\n    \"descripcion\": \"Migraña severa\",\r\n    \"tratamiento\": \"Ibuprofeno y reposo\",\r\n    \"paciente\": {\r\n      \"id\": \"124\",\r\n      \"nombre\": \"Ana Gómez\",\r\n      \"genero\": \"Femenino\"\r\n    }\r\n  }\r\n]\r\n"
+				}
+			]
+		},
+		{
+			"name": "Get one diagnostico",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/diagnosticos/{{diagnostico_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"diagnosticos",
+						"{{diagnostico_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get one diagnostico",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n  \"id\": \"1\",\r\n  \"descripcion\": \"Fiebre alta y dolor de cabeza persistente\",\r\n  \"tratamiento\": \"Paracetamol y descanso\",\r\n  \"paciente\": {\r\n    \"id\": \"123\",\r\n    \"nombre\": \"Juan Pérez\",\r\n    \"genero\": \"Masculino\"\r\n  }\r\n}\r\n"
+				}
+			]
+		},
+		{
+			"name": "Get invalid Diagnostico",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/diagnosticos/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"diagnosticos",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get invalid Diagnostico",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/diagnosticos/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"diagnosticos",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n   \"statusCode\": 404,\r\n   \"message\": \"The diagnostico with the given id was not found\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Update Diagnostico",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"descripcion\": \"Dolor de cabeza persistente y fiebre moderada\",\r\n  \"tratamiento\": \"Ibuprofeno cada 8 horas\",\r\n  \"pacienteId\": \"123\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/diagnosticos/{{diagnostico_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"diagnosticos",
+						"{{diagnostico_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Update Diagnostico",
+					"originalRequest": {
+						"method": "GET",
+						"header": []
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n  \"id\": \"1\",\r\n  \"descripcion\": \"Dolor de cabeza persistente y fiebre moderada\",\r\n  \"tratamiento\": \"Ibuprofeno cada 8 horas\",\r\n  \"paciente\": {\r\n    \"id\": \"123\",\r\n    \"nombre\": \"Juan Pérez\",\r\n    \"genero\": \"Masculino\"\r\n  }\r\n}\r\n"
+				}
+			]
+		},
+		{
+			"name": "Actualizar diagnostico que no existe",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/diagnosticos/00000000-0000-0000-0000-00000000000",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"diagnosticos",
+						"00000000-0000-0000-0000-00000000000"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Actualizar diagnostico que no existe",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/diagnosticos/00000000-0000-0000-0000-00000000000",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"diagnosticos",
+								"00000000-0000-0000-0000-00000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n   \"statusCode\": 404,\r\n   \"message\": \"The diagnostico with the given id was not found\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Borrar un diagnostico",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/diagnostico/{{diagnostico_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"diagnostico",
+						"{{diagnostico_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Borrar un diagnostico",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/diagnostico/{{museum_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"diagnostico",
+								"{{museum_id}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Borrar diagnostico que no existe",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/diagnosticos/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"diagnosticos",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Borrar diagnostico que no existe",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/diagnosticos/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"diagnosticos",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n   \"statusCode\": 404,\r\n   \"message\": \"The museum with the given id was not found\"\r\n}"
+				}
+			]
+		}
+	]
+}
