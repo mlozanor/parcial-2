@@ -9,6 +9,24 @@
 	"item": [
 		{
 			"name": "Add medico",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"medico_id\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -61,12 +79,31 @@
 					"_postman_previewlanguage": null,
 					"header": null,
 					"cookie": [],
-					"body": "{\r\n  \"id\": \"1\",\r\n  \"nombre\": \"Dr. Juan Pérez\",\r\n  \"especialidad\": \"Cardiología\",\r\n  \"telefono\": \"555-1234\"\r\n}\r\n"
+					"body": "{\r\n  \"id\": \"f0680682-6d19-4fcd-9795-03f2a768cda8\",\r\n  \"nombre\": \"Dr. Juan Pérez\",\r\n  \"especialidad\": \"Cardiología\",\r\n  \"telefono\": \"555-1234\"\r\n}\r\n"
 				}
 			]
 		},
 		{
 			"name": "Get all medicos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Number of medicos > ' + 0, function () {\r",
+							"    var data = pm.response.json()\r",
+							"    pm.expect(data.length).to.greaterThan(0)\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -101,12 +138,26 @@
 					"_postman_previewlanguage": null,
 					"header": null,
 					"cookie": [],
-					"body": "[\r\n  {\r\n    \"id\": \"1\",\r\n    \"nombre\": \"Dr. Juan Pérez\",\r\n    \"especialidad\": \"Cardiología\",\r\n    \"telefono\": \"555-1234\",\r\n    \"pacientes\": [\r\n      {\r\n        \"id\": \"101\",\r\n        \"nombre\": \"Pedro Gómez\",\r\n        \"genero\": \"Masculino\",\r\n        \"diagnosticos\": [\r\n          {\r\n            \"id\": \"1001\",\r\n            \"descripcion\": \"Fiebre alta\",\r\n            \"tratamiento\": \"Paracetamol y descanso\"\r\n          },\r\n          {\r\n            \"id\": \"1002\",\r\n            \"descripcion\": \"Dolor de cabeza severo\",\r\n            \"tratamiento\": \"Ibuprofeno y reposo\"\r\n          }\r\n        ]\r\n      },\r\n      {\r\n        \"id\": \"102\",\r\n        \"nombre\": \"María López\",\r\n        \"genero\": \"Femenino\",\r\n        \"diagnosticos\": [\r\n          {\r\n            \"id\": \"1003\",\r\n            \"descripcion\": \"Migraña crónica\",\r\n            \"tratamiento\": \"Medicamento para migraña\"\r\n          }\r\n        ]\r\n      }\r\n    ]\r\n  },\r\n  {\r\n    \"id\": \"2\",\r\n    \"nombre\": \"Dra. Ana Gómez\",\r\n    \"especialidad\": \"Pediatría\",\r\n    \"telefono\": \"555-5678\",\r\n    \"pacientes\": [\r\n      {\r\n        \"id\": \"103\",\r\n        \"nombre\": \"Lucía Martínez\",\r\n        \"genero\": \"Femenino\",\r\n        \"diagnosticos\": []\r\n      }\r\n    ]\r\n  }\r\n]\r\n"
+					"body": "[\r\n  {\r\n    \"id\": \"f0680682-6d19-4fcd-9795-03f2a768cda8\",\r\n    \"nombre\": \"Dr. Juan Pérez\",\r\n    \"especialidad\": \"Cardiología\",\r\n    \"telefono\": \"555-1234\",\r\n    \"pacientes\": [\r\n      {\r\n        \"id\": \"a8f0cfea-1b3a-48c7-87e7-67bf3cb5d39f\",\r\n        \"nombre\": \"Pedro Gómez\",\r\n        \"genero\": \"Masculino\",\r\n        \"diagnosticos\": [\r\n          {\r\n            \"id\": \"b3d90a88-9f64-4876-9114-58b85de4e7af\",\r\n            \"descripcion\": \"Fiebre alta\",\r\n            \"tratamiento\": \"Paracetamol y descanso\"\r\n          },\r\n          {\r\n            \"id\": \"45c82cf7-3135-44a3-bcda-3652a8f6eb32\",\r\n            \"descripcion\": \"Dolor de cabeza severo\",\r\n            \"tratamiento\": \"Ibuprofeno y reposo\"\r\n          }\r\n        ]\r\n      },\r\n      {\r\n        \"id\": \"317bbd3e-faf5-4d85-8c9c-0373adf803ad\",\r\n        \"nombre\": \"María López\",\r\n        \"genero\": \"Femenino\",\r\n        \"diagnosticos\": [\r\n          {\r\n            \"id\": \"d41a5c74-1b8f-4ba1-b6cd-f46fba3c6e50\",\r\n            \"descripcion\": \"Migraña crónica\",\r\n            \"tratamiento\": \"Medicamento para migraña\"\r\n          }\r\n        ]\r\n      }\r\n    ]\r\n  },\r\n  {\r\n    \"id\": \"99d5c07b-4c2c-45c9-9f18-84f9a1e0e5c7\",\r\n    \"nombre\": \"Dra. Ana Gómez\",\r\n    \"especialidad\": \"Pediatría\",\r\n    \"telefono\": \"555-5678\",\r\n    \"pacientes\": [\r\n      {\r\n        \"id\": \"88a0df06-9b3f-4534-9204-3e31d441aeb8\",\r\n        \"nombre\": \"Lucía Martínez\",\r\n        \"genero\": \"Femenino\",\r\n        \"diagnosticos\": []\r\n      }\r\n    ]\r\n  }\r\n]\r\n"
 				}
 			]
 		},
 		{
 			"name": "Get one Medico",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -133,12 +184,31 @@
 					"_postman_previewlanguage": null,
 					"header": null,
 					"cookie": [],
-					"body": "{\r\n  \"id\": \"1\",\r\n  \"nombre\": \"Dr. Juan Pérez\",\r\n  \"especialidad\": \"Cardiología\",\r\n  \"telefono\": \"555-1234\",\r\n  \"pacientes\": [\r\n    {\r\n      \"id\": \"101\",\r\n      \"nombre\": \"Pedro Gómez\",\r\n      \"genero\": \"Masculino\",\r\n      \"diagnosticos\": [\r\n        {\r\n          \"id\": \"1001\",\r\n          \"descripcion\": \"Fiebre alta\",\r\n          \"tratamiento\": \"Paracetamol y descanso\"\r\n        },\r\n        {\r\n          \"id\": \"1002\",\r\n          \"descripcion\": \"Dolor de cabeza severo\",\r\n          \"tratamiento\": \"Ibuprofeno y reposo\"\r\n        }\r\n      ]\r\n    },\r\n    {\r\n      \"id\": \"102\",\r\n      \"nombre\": \"María López\",\r\n      \"genero\": \"Femenino\",\r\n      \"diagnosticos\": [\r\n        {\r\n          \"id\": \"1003\",\r\n          \"descripcion\": \"Migraña crónica\",\r\n          \"tratamiento\": \"Medicamento para migraña\"\r\n        }\r\n      ]\r\n    }\r\n  ]\r\n}\r\n"
+					"body": "{\r\n  \"id\": \"f0680682-6d19-4fcd-9795-03f2a768cda8\",\r\n  \"nombre\": \"Dr. Juan Pérez\",\r\n  \"especialidad\": \"Cardiología\",\r\n  \"telefono\": \"555-1234\",\r\n  \"pacientes\": [\r\n    {\r\n      \"id\": \"a8f0cfea-1b3a-48c7-87e7-67bf3cb5d39f\",\r\n      \"nombre\": \"Pedro Gómez\",\r\n      \"genero\": \"Masculino\",\r\n      \"diagnosticos\": [\r\n        {\r\n          \"id\": \"b3d90a88-9f64-4876-9114-58b85de4e7af\",\r\n          \"descripcion\": \"Fiebre alta\",\r\n          \"tratamiento\": \"Paracetamol y descanso\"\r\n        },\r\n        {\r\n          \"id\": \"45c82cf7-3135-44a3-bcda-3652a8f6eb32\",\r\n          \"descripcion\": \"Dolor de cabeza severo\",\r\n          \"tratamiento\": \"Ibuprofeno y reposo\"\r\n        }\r\n      ]\r\n    },\r\n    {\r\n      \"id\": \"317bbd3e-faf5-4d85-8c9c-0373adf803ad\",\r\n      \"nombre\": \"María López\",\r\n      \"genero\": \"Femenino\",\r\n      \"diagnosticos\": [\r\n        {\r\n          \"id\": \"d41a5c74-1b8f-4ba1-b6cd-f46fba3c6e50\",\r\n          \"descripcion\": \"Migraña crónica\",\r\n          \"tratamiento\": \"Medicamento para migraña\"\r\n        }\r\n      ]\r\n    }\r\n  ]\r\n}\r\n"
 				}
 			]
 		},
 		{
-			"name": "Obtener un medico que no existe",
+			"name": "Get an invalid medico",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"    var data = pm.response.json();\r",
+							"    pm.expect(data.message).to.eql(\"The medico with the given id was not found\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -155,7 +225,7 @@
 			},
 			"response": [
 				{
-					"name": "Obtener un medico que no existe",
+					"name": "Get an invalid medico",
 					"originalRequest": {
 						"method": "GET",
 						"header": []
@@ -170,7 +240,21 @@
 			]
 		},
 		{
-			"name": "Actualizar  un medico",
+			"name": "Update a medico",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
 			"request": {
 				"method": "PUT",
 				"header": [],
@@ -216,12 +300,31 @@
 					"_postman_previewlanguage": null,
 					"header": null,
 					"cookie": [],
-					"body": "{\r\n  \"id\": \"1\",\r\n  \"nombre\": \"Dr. Juan Pérez Actualizado\",\r\n  \"especialidad\": \"Neurología\",\r\n  \"telefono\": \"555-5678\",\r\n  \"pacientes\": [\r\n    {\r\n      \"id\": \"101\",\r\n      \"nombre\": \"Pedro Gómez\",\r\n      \"genero\": \"Masculino\"\r\n    },\r\n    {\r\n      \"id\": \"102\",\r\n      \"nombre\": \"María López\",\r\n      \"genero\": \"Femenino\"\r\n    }\r\n  ]\r\n}\r\n"
+					"body": "{\r\n  \"id\": \"d4e1b734-8a3d-4d21-8c89-3f70505b9fb1\",\r\n  \"nombre\": \"Dr. Juan Pérez Actualizado\",\r\n  \"especialidad\": \"Neurología\",\r\n  \"telefono\": \"555-5678\",\r\n  \"pacientes\": [\r\n    {\r\n      \"id\": \"e7f0c2d5-9a24-4c5d-b3f5-d2ed5b0a6e8a\",\r\n      \"nombre\": \"Pedro Gómez\",\r\n      \"genero\": \"Masculino\"\r\n    },\r\n    {\r\n      \"id\": \"f5d0b8e2-67d2-411f-9c93-1e37456cda5f\",\r\n      \"nombre\": \"María López\",\r\n      \"genero\": \"Femenino\"\r\n    }\r\n  ]\r\n}\r\n\r\n"
 				}
 			]
 		},
 		{
-			"name": "Actualizar un medico que no existe",
+			"name": "Update an invalid medico",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"    var data = pm.response.json();\r",
+							"    pm.expect(data.message).to.eql(\"The medico with the given id was not found\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
 			"request": {
 				"method": "PUT",
 				"header": [],
@@ -263,7 +366,21 @@
 			]
 		},
 		{
-			"name": "borrar un medico",
+			"name": "Delete an medico",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
 			"request": {
 				"method": "DELETE",
 				"header": [],
@@ -306,6 +423,25 @@
 		},
 		{
 			"name": "Borrar medico que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"    var data = pm.response.json();\r",
+							"    pm.expect(data.message).to.eql(\"The medico with the given id was not found\");\r",
+							"}); "
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
 			"request": {
 				"method": "DELETE",
 				"header": [],

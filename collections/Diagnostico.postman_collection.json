@@ -9,6 +9,23 @@
 	"item": [
 		{
 			"name": "Add diagnostico",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"diagnostico_id\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -67,6 +84,25 @@
 		},
 		{
 			"name": "Get all diagnosticos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Number of diagnosticos > ' + 0, function () {\r",
+							"    var data = pm.response.json()\r",
+							"    pm.expect(data.length).to.greaterThan(0)\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -116,12 +152,26 @@
 					"_postman_previewlanguage": null,
 					"header": null,
 					"cookie": [],
-					"body": "[\r\n  {\r\n    \"id\": \"1\",\r\n    \"descripcion\": \"Fiebre alta y dolor de cabeza persistente\",\r\n    \"tratamiento\": \"Paracetamol y descanso\",\r\n    \"paciente\": {\r\n      \"id\": \"123\",\r\n      \"nombre\": \"Juan Pérez\",\r\n      \"genero\": \"Masculino\"\r\n    }\r\n  },\r\n  {\r\n    \"id\": \"2\",\r\n    \"descripcion\": \"Migraña severa\",\r\n    \"tratamiento\": \"Ibuprofeno y reposo\",\r\n    \"paciente\": {\r\n      \"id\": \"124\",\r\n      \"nombre\": \"Ana Gómez\",\r\n      \"genero\": \"Femenino\"\r\n    }\r\n  }\r\n]\r\n"
+					"body": "[\r\n  {\r\n    \"id\": \"\"48a9ab90-1276-11ed-861d-0242ac120002\"\",\r\n    \"descripcion\": \"Fiebre alta y dolor de cabeza persistente\",\r\n    \"tratamiento\": \"Paracetamol y descanso\",\r\n    \"paciente\": {\r\n      \"id\": \"14f05d0e-1275-11ed-861d-0242ac120032\",\r\n      \"nombre\": \"Juan Pérez\",\r\n      \"genero\": \"Masculino\"\r\n    }\r\n  },\r\n  {\r\n    \"id\": \"14f05d0e-1275-11ed-861d-0242ac120004\",\r\n    \"descripcion\": \"Migraña severa\",\r\n    \"tratamiento\": \"Ibuprofeno y reposo\",\r\n    \"paciente\": {\r\n      \"id\": \"124\",\r\n      \"nombre\": \"Ana Gómez\",\r\n      \"genero\": \"Femenino\"\r\n    }\r\n  }\r\n]\r\n"
 				}
 			]
 		},
 		{
 			"name": "Get one diagnostico",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -163,12 +213,31 @@
 					"_postman_previewlanguage": null,
 					"header": null,
 					"cookie": [],
-					"body": "{\r\n  \"id\": \"1\",\r\n  \"descripcion\": \"Fiebre alta y dolor de cabeza persistente\",\r\n  \"tratamiento\": \"Paracetamol y descanso\",\r\n  \"paciente\": {\r\n    \"id\": \"123\",\r\n    \"nombre\": \"Juan Pérez\",\r\n    \"genero\": \"Masculino\"\r\n  }\r\n}\r\n"
+					"body": "{\r\n  \"id\": \"1e061964-1276-11ed-861d-0242ac120002\",\r\n  \"descripcion\": \"Fiebre alta y dolor de cabeza persistente\",\r\n  \"tratamiento\": \"Paracetamol y descanso\",\r\n  \"paciente\": {\r\n    \"id\": \"2e061964-1276-11ed-861d-0242ac120002\",\r\n    \"nombre\": \"Juan Pérez\",\r\n    \"genero\": \"Masculino\"\r\n  }\r\n}\r\n"
 				}
 			]
 		},
 		{
 			"name": "Get invalid Diagnostico",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"    var data = pm.response.json();\r",
+							"    pm.expect(data.message).to.eql(\"The diagnostico with the given id was not found\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -226,6 +295,20 @@
 		},
 		{
 			"name": "Update Diagnostico",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
 			"request": {
 				"method": "PUT",
 				"header": [],
@@ -261,12 +344,31 @@
 					"_postman_previewlanguage": null,
 					"header": null,
 					"cookie": [],
-					"body": "{\r\n  \"id\": \"1\",\r\n  \"descripcion\": \"Dolor de cabeza persistente y fiebre moderada\",\r\n  \"tratamiento\": \"Ibuprofeno cada 8 horas\",\r\n  \"paciente\": {\r\n    \"id\": \"123\",\r\n    \"nombre\": \"Juan Pérez\",\r\n    \"genero\": \"Masculino\"\r\n  }\r\n}\r\n"
+					"body": "{\r\n  \"id\": \"1e061964-1276-11ed-861d-0242ac120002\",\r\n  \"descripcion\": \"Dolor de cabeza persistente y fiebre moderada\",\r\n  \"tratamiento\": \"Ibuprofeno cada 8 horas\",\r\n  \"paciente\": {\r\n    \"id\": \"2e061964-1276-11ed-861d-0242ac120002\",\r\n    \"nombre\": \"Juan Pérez\",\r\n    \"genero\": \"Masculino\"\r\n  }\r\n}\r\n"
 				}
 			]
 		},
 		{
-			"name": "Actualizar diagnostico que no existe",
+			"name": "Update an invalid Diagnostico",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"    var data = pm.response.json();\r",
+							"    pm.expect(data.message).to.eql(\"The diagnostico with the given id was not found\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
 			"request": {
 				"method": "PUT",
 				"header": [],
@@ -308,7 +410,21 @@
 			]
 		},
 		{
-			"name": "Borrar un diagnostico",
+			"name": "Delete a Diagnostico",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
 			"request": {
 				"method": "DELETE",
 				"header": [],
@@ -330,13 +446,13 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/diagnostico/{{museum_id}}",
+							"raw": "{{baseUrl}}/diagnostico/{{diagnostico_id}}",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"diagnostico",
-								"{{museum_id}}"
+								"{{diagnostico_id}}"
 							]
 						}
 					},
@@ -350,7 +466,26 @@
 			]
 		},
 		{
-			"name": "Borrar diagnostico que no existe",
+			"name": "Delete an invalid diagnostico",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"    var data = pm.response.json();\r",
+							"    pm.expect(data.message).to.eql(\"The diagnostico with the given id was not found\");\r",
+							"}); "
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
 			"request": {
 				"method": "DELETE",
 				"header": [],
@@ -387,7 +522,7 @@
 					"_postman_previewlanguage": null,
 					"header": null,
 					"cookie": [],
-					"body": "{\r\n   \"statusCode\": 404,\r\n   \"message\": \"The museum with the given id was not found\"\r\n}"
+					"body": "{\r\n   \"statusCode\": 404,\r\n   \"message\": \"The diagnostico with the given id was not found\"\r\n}"
 				}
 			]
 		}

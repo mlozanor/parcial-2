@@ -9,6 +9,34 @@
 	"item": [
 		{
 			"name": "Add paciente",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"paciente_id\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -61,12 +89,31 @@
 					"_postman_previewlanguage": null,
 					"header": null,
 					"cookie": [],
-					"body": "{\r\n  \"id\": \"1\",\r\n  \"nombre\": \"Juan Pérez\",\r\n  \"genero\": \"Masculino\"\r\n}\r\n"
+					"body": "{\r\n  \"id\": \"7a9c3d6a-8a1e-4537-b489-59fbd6e77abc\",\r\n  \"nombre\": \"Juan Pérez\",\r\n  \"genero\": \"Masculino\"\r\n}\r\n"
 				}
 			]
 		},
 		{
 			"name": "Get all pacientes",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Number of pacientes > ' + 0, function () {\r",
+							"    var data = pm.response.json()\r",
+							"    pm.expect(data.length).to.greaterThan(0)\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -101,7 +148,7 @@
 					"_postman_previewlanguage": null,
 					"header": null,
 					"cookie": [],
-					"body": "[\r\n  {\r\n    \"id\": \"1\",\r\n    \"nombre\": \"Juan Pérez\",\r\n    \"genero\": \"Masculino\",\r\n    \"medicos\": [\r\n      {\r\n        \"id\": \"101\",\r\n        \"nombre\": \"Dr. Ana Gómez\",\r\n        \"especialidad\": \"Cardiología\"\r\n      }\r\n    ],\r\n    \"diagnosticos\": [\r\n      {\r\n        \"id\": \"201\",\r\n        \"descripcion\": \"Fiebre alta\",\r\n        \"tratamiento\": \"Paracetamol y descanso\"\r\n      }\r\n    ]\r\n  },\r\n  {\r\n    \"id\": \"2\",\r\n    \"nombre\": \"María López\",\r\n    \"genero\": \"Femenino\",\r\n    \"medicos\": [],\r\n    \"diagnosticos\": []\r\n  }\r\n]\r\n"
+					"body": "[\r\n  {\r\n    \"id\": \"f24c5d13-2e75-48b7-8512-8c9c3fa2a1b5\",\r\n    \"nombre\": \"Juan Pérez\",\r\n    \"genero\": \"Masculino\",\r\n    \"medicos\": [\r\n      {\r\n        \"id\": \"8fa6f325-d21c-4ea5-8a22-6b5c50db0e3e\",\r\n        \"nombre\": \"Dr. Ana Gómez\",\r\n        \"especialidad\": \"Cardiología\"\r\n      }\r\n    ],\r\n    \"diagnosticos\": [\r\n      {\r\n        \"id\": \"c34a9c27-bd31-47b8-9268-34292c0b0289\",\r\n        \"descripcion\": \"Fiebre alta\",\r\n        \"tratamiento\": \"Paracetamol y descanso\"\r\n      }\r\n    ]\r\n  },\r\n  {\r\n    \"id\": \"7d9bcfb6-2d64-4a6e-aebb-04c9c6ffb06d\",\r\n    \"nombre\": \"María López\",\r\n    \"genero\": \"Femenino\",\r\n    \"medicos\": [],\r\n    \"diagnosticos\": []\r\n  }\r\n]\r\n"
 				}
 			]
 		},
@@ -132,12 +179,31 @@
 					"_postman_previewlanguage": null,
 					"header": null,
 					"cookie": [],
-					"body": "{\r\n  \"id\": \"1\",\r\n  \"nombre\": \"Juan Pérez\",\r\n  \"genero\": \"Masculino\",\r\n  \"medicos\": [\r\n    {\r\n      \"id\": \"101\",\r\n      \"nombre\": \"Dr. Ana Gómez\",\r\n      \"especialidad\": \"Cardiología\"\r\n    }\r\n  ],\r\n  \"diagnosticos\": [\r\n    {\r\n      \"id\": \"201\",\r\n      \"descripcion\": \"Fiebre alta\",\r\n      \"tratamiento\": \"Paracetamol y descanso\"\r\n    }\r\n  ]\r\n}\r\n"
+					"body": "{\r\n  \"id\": \"f0c1a9b4-3e6b-42da-9179-69d9e5c79dcb\",\r\n  \"nombre\": \"Juan Pérez\",\r\n  \"genero\": \"Masculino\",\r\n  \"medicos\": [\r\n    {\r\n      \"id\": \"78bce1f1-7852-46b9-9226-55de0c9405ef\",\r\n      \"nombre\": \"Dr. Ana Gómez\",\r\n      \"especialidad\": \"Cardiología\"\r\n    }\r\n  ],\r\n  \"diagnosticos\": [\r\n    {\r\n      \"id\": \"b7d9e401-3a0f-4c4b-8269-00ea6f98f234\",\r\n      \"descripcion\": \"Fiebre alta\",\r\n      \"tratamiento\": \"Paracetamol y descanso\"\r\n    }\r\n  ]\r\n}\r\n"
 				}
 			]
 		},
 		{
-			"name": "Obtener paciente que no existe",
+			"name": "Get an invalid paciente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"    var data = pm.response.json();\r",
+							"    pm.expect(data.message).to.eql(\"The paciente with the given id was not found\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -178,7 +244,21 @@
 			]
 		},
 		{
-			"name": "Actualizar un paciente",
+			"name": "Update un paciente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
 			"request": {
 				"method": "PUT",
 				"header": [],
@@ -233,12 +313,31 @@
 					"_postman_previewlanguage": null,
 					"header": null,
 					"cookie": [],
-					"body": "{\r\n  \"id\": \"1\",\r\n  \"nombre\": \"Juan Pérez Actualizado\",\r\n  \"genero\": \"Masculino\"\r\n}\r\n"
+					"body": "{\r\n  \"id\": \"7a9c3d6a-8a1e-4537-b489-59fbd6e77abc\",\r\n  \"nombre\": \"Juan Pérez\",\r\n  \"genero\": \"Masculino\"\r\n}\r\n"
 				}
 			]
 		},
 		{
 			"name": "Actualizar paciente que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"    var data = pm.response.json();\r",
+							"    pm.expect(data.message).to.eql(\"The paciente with the given id was not found\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
 			"request": {
 				"method": "PUT",
 				"header": [],
@@ -281,6 +380,20 @@
 		},
 		{
 			"name": "Borrar paciente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
 			"request": {
 				"method": "DELETE",
 				"header": [],
@@ -323,6 +436,25 @@
 		},
 		{
 			"name": "Borrar paciente que no exixste",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"    var data = pm.response.json();\r",
+							"    pm.expect(data.message).to.eql(\"The paciente with the given id was not found\");\r",
+							"}); "
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
 			"request": {
 				"method": "DELETE",
 				"header": [],
